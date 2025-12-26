@@ -19,12 +19,11 @@ def run() -> List[float]:
             action, prob = agent.get_action(state)
 
             next_state, reward, done, _ = env.step(action)
-            agent.add(action, prob)
+            agent.update(state, prob, next_state, reward, done)
 
             state = next_state
             total_reward += reward
 
-        agent.update()
         reward_history.append(total_reward)
         if (epoch + 1) % 100 == 0:
             avg_reward = sum(reward_history[-100:]) / 100
@@ -39,7 +38,7 @@ def draw_plot(reward_history: List[float]):
     plt.ylabel('总奖励')
     plt.title('每回合奖励')
     plt.grid(True)
-    plt.savefig('REINFORCE.png')
+    plt.savefig('Actor-Critic.png')
 
 
 if __name__ == '__main__':

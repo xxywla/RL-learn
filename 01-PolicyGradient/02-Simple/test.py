@@ -39,7 +39,7 @@ def draw_plot(reward_history: List[float]):
     plt.ylabel('总奖励')
     plt.title('每回合奖励')
     plt.grid(True)
-    plt.show()
+    plt.savefig('simple.png')
 
 
 if __name__ == '__main__':
